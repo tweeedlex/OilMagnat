@@ -13,9 +13,10 @@ const userSchema = mongoose.Schema({
 	roles: [{ type: String, ref: "Role", default: ["USER"] }],
 	// game
 	oilAmount: { type: Number, default: 0, required: true },
-	derrickLevel: { type: Number, default: 1, required: true },
-	derrickMiningRate: { type: Number, default: 0.05, required: true },
 	notClaimedOil: { type: Number, default: 0, required: true },
+
+	// derrickLevel: { type: Number, default: 1, required: true },
+	// derrickMiningRate: { type: Number, default: 0.05, required: true },
 	// refferal system
 	referralCode: { type: String, required: true },
 	EnterReferralCode: { type: String, default: "0" },
