@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const authMiddleware = require("../../../middlewares/authMiddleware");
+const authMiddleware = require("../../../../middlewares/adminMiddleware");
 
 module.exports = Router({ mergeParams: true }).post("/upgrade/burger", authMiddleware, async (req, res, next) => {
 	try {

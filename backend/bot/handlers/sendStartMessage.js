@@ -1,8 +1,7 @@
 const path = require("path");
 const WelcomePhotoPath = path.join(__dirname, "..", "media", "logo.jpg");
-const websiteUrl = process.env.WEBSITE_URL;
 const fs = require("fs");
-const { subscribeMessage, loginedMessage } = require("../messages/messages");
+const { loginedMessage } = require("../messages/messages");
 
 async function sendStartMessage(tgBot, userId) {
 	const options = {
@@ -13,7 +12,7 @@ async function sendStartMessage(tgBot, userId) {
 					{
 						text: "🤚🏻Let’s Tap",
 						web_app: {
-							url: `${websiteUrl}?telegramUserId=${userId}`,
+							url: `${process.env.WEBSITE_URL}?telegramUserId=${userId}`,
 						},
 					},
 				],

@@ -1,13 +1,5 @@
 const { Router } = require("express");
-const { generateReferralCode } = require("../../../../bot/helpers/helpers");
-const { uploadAvatarWithUrl } = require("../../../helpers/uploadAvatar");
-const { generateToken, verifyInitData, urlSearchParamsToObject, register } = require("../../../helpers/auth");
-const Bottleneck = require("bottleneck");
-
-const limiter = new Bottleneck({
-	minTime: 1000 / 25, // 25 запитів на секунду
-	maxConcurrent: 1,
-});
+const { generateToken, verifyInitData, urlSearchParamsToObject, register } = require("../../../../helpers/auth");
 
 module.exports = Router({ mergeParams: true }).post("/user/create", async (req, res, next) => {
 	try {

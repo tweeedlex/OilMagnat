@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { uploadAvatarWithUrl } = require("./uploadAvatar");
-const { generateReferralCode } = require("../../bot/helpers/helpers");
 
 const generateToken = (initData) => {
 	const expiresIn = process.env.JWT_EXPIRES_IN || "1h";
@@ -154,6 +153,19 @@ const register = async (db, tgBot, EnterReferralCode, tgUser) => {
 		}
 	}
 	return user;
+};
+
+const generateReferralCode = async () => {
+	const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	const codeLength = 8;
+	let code = "";
+
+	for (let i = 0; i < codeLength; i++) {
+		const randomIndex = Math.floor(Math.random() * characters.length);
+		code += characters.charAt(randomIndex);
+	}
+
+	return code;
 };
 
 module.exports = { generateToken, verifyInitData, urlSearchParamsToObject, register };

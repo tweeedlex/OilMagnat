@@ -1,8 +1,8 @@
 const { Router } = require("express");
-const { uploadAvatarWithUrl } = require("../../../helpers/uploadAvatar");
-const { generateToken, verifyInitData, urlSearchParamsToObject } = require("../../../helpers/auth");
+const { uploadAvatarWithUrl } = require("../../../../helpers/uploadAvatar");
+const { generateToken, verifyInitData, urlSearchParamsToObject } = require("../../../../helpers/auth");
 
-module.exports = Router({ mergeParams: true }).post("/auth", async (req, res, next) => {
+module.exports = Router({ mergeParams: true }).post("/user/auth", async (req, res, next) => {
 	try {
 		const { db, tgBot, ApiError } = req;
 		let { initData } = req.body;
