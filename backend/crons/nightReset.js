@@ -9,15 +9,7 @@ async function resetNotClaimedTokens(db) {
 		await User.updateMany(
 			{},
 			{
-				$set: {
-					notClaimedBalance: 0,
-					energeticAmount: settings.maxDailyEnergyDrinkAmount,
-					hotDogAmount: settings.maxDailyHotDogAmount,
-					freeEnergeticAmount: settings.freeEnergyDrinkAmount,
-					freeHotDogAmount: settings.freeHotDogAmount,
-					dailyUserInfoUpdated: false,
-					isDailyClaimedToday: false,
-				},
+				$set: {},
 			}
 		);
 

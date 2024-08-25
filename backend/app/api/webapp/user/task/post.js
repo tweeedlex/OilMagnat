@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const authMiddleware = require("../../../middlewares/authMiddleware");
-const { getUserTasksInfo } = require("../../../helpers/tasks");
+const authMiddleware = require("../../../../middlewares/authMiddleware");
+const { getUserTasksInfo } = require("../../../../helpers/tasks");
 
 module.exports = Router({ mergeParams: true }).post("/user/task", authMiddleware, async (req, res, next) => {
 	try {
