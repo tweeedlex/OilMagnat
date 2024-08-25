@@ -1,0 +1,8 @@
+.env
+log.log
+package-lock.json
+node_modules/
+.idea
+static/**/*.jpg
+static/**/*.png
+static/**/*.webp
