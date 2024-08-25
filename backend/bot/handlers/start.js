@@ -1,5 +1,3 @@
-const { idToString, generateReferralCode } = require("../helpers/helpers");
-const { uploadAvatarWithUrl } = require("../../app/helpers/uploadAvatar");
 const { sendStartMessage } = require("./sendStartMessage");
 const { register } = require("../../app/helpers/auth");
 
