@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { uploadAvatarWithUrl } = require("../../../../helpers/uploadAvatar");
-const { generateToken, verifyInitData, urlSearchParamsToObject } = require("../../../../helpers/auth");
+const { generateToken, verifyInitData, urlSearchParamsToObject, register } = require("../../../../helpers/auth");
 
 module.exports = Router({ mergeParams: true }).post("/user/auth", async (req, res, next) => {
 	try {
@@ -19,6 +19,7 @@ module.exports = Router({ mergeParams: true }).post("/user/auth", async (req, re
 
 		// getting ip address from proxy header
 		const forwarded = req.headers["x-forwarded-for"];
+
 		let user = await db.User.findOneAndUpdate(
 			{ tgId: initData.user.id },
 			{
@@ -32,7 +33,9 @@ module.exports = Router({ mergeParams: true }).post("/user/auth", async (req, re
 		);
 
 		if (!user) {
-			return next(ApiError.UnauthorizedError(`Cannot find user with tgId: ${initData.user.id}`));
+			user = await register(db, tgBot, "", initData.user);
+			console.log("user created");
+			// return next(ApiError.UnauthorizedError(`Cannot find user with tgId: ${initData.user.id}`));
 		}
 
 		if (!user.dailyUserInfoUpdated) {

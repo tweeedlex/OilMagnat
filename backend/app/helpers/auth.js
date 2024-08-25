@@ -155,7 +155,7 @@ const register = async (db, tgBot, EnterReferralCode, tgUser) => {
 	return user;
 };
 
-const generateReferralCode = async () => {
+const generateReferralCode = () => {
 	const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	const codeLength = 8;
 	let code = "";
