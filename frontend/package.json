@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "run-build": "vite build && cd ../backend && npm run dev",
-    "ngrok": "ngrok http http://localhost:5173"
+    "ngrok": "ngrok http 5173"
   },
   "dependencies": {
     "@react-buddy/ide-toolbox": "^2.4.0",
