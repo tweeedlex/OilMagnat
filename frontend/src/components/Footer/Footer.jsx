@@ -15,6 +15,7 @@ import {Link} from "react-router-dom";
 
 const Footer = () => {
   return (
+    <>
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <nav className={styles.pageLinks}>
@@ -44,6 +45,8 @@ const Footer = () => {
         </nav>
       </div>
     </footer>
+    <div className={styles.viniette}></div>
+    </>
   );
 };
 
