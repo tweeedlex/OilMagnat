@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const authMiddleware = require("../../../../middlewares/authMiddleware");
+const ApiError = require("../../../../exceptions/api-error");
 
 module.exports = Router({ mergeParams: true }).post("/upgrade/oilStorage", authMiddleware, async (req, res, next) => {
 	try {
@@ -9,18 +10,18 @@ module.exports = Router({ mergeParams: true }).post("/upgrade/oilStorage", authM
 		let user = await db.User.findOne({ tgId });
 
 		if (!user) {
-			return res.status(404).json("User not found");
+			return next(new ApiError(404, "User not found"));
 		}
 
 		let upgradeCost = calculateUpgradeCost(user.oilStorageLevel);
 		if (user.balance < upgradeCost) {
-			return res.status(404).json("Insufficient balance for the burger upgrade");
+			return next(new ApiError(404, "Insufficient balance for the burger upgrade"));
 		}
 
 		const settings = await db.Settings.findOne();
 
 		if (user.oilStorageLevel >= settings.maxOilStorageLevel) {
-			return res.status(404).json("Maximum burger upgrade level reached");
+			return next(new ApiError(404, "Maximum burger upgrade level reached"));
 		}
 
 		user.balance -= upgradeCost;
