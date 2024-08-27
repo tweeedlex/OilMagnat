@@ -33,7 +33,7 @@ module.exports = Router({ mergeParams: true }).get("/user", authMiddleware, asyn
 			totalResouces,
 			tasksCompleted,
 			totalOilProduction,
-			refferalCode: user.referralCode,
+			refferalCode: `https://t.me/${process.env.TG_BOT_USERNAME}/start?startapp=${user.referralCode}`,
 			referrals,
 		});
 	} catch (error) {
