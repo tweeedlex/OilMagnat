@@ -1,6 +1,11 @@
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { uploadAvatarWithUrl } = require("./uploadAvatar");
+const Bottleneck = require("bottleneck");
+const limiter = new Bottleneck({
+	minTime: 1000 / 2, // 2 requests per second
+	maxConcurrent: 1,
+});
 
 const generateToken = (initData) => {
 	const expiresIn = process.env.JWT_EXPIRES_IN || "1h";
@@ -78,7 +83,6 @@ const register = async (db, tgBot, EnterReferralCode, tgUser) => {
 		// get telegram avatar
 		let userTgAvatar = "";
 		const userProfilePhotos = await tgBot.getUserProfilePhotos(tgId);
-
 		if (userProfilePhotos.total_count > 0) {
 			// Get the first photo's file_id
 			const fileId = userProfilePhotos.photos[0][0].file_id;
@@ -89,7 +93,7 @@ const register = async (db, tgBot, EnterReferralCode, tgUser) => {
 
 			// download and upload avatar
 			let uploadResponse = await uploadAvatarWithUrl(url, { tgId });
-
+			console.log(uploadResponse);
 			if (uploadResponse.error == false) {
 				userTgAvatar = uploadResponse.fileName;
 			}
@@ -99,51 +103,41 @@ const register = async (db, tgBot, EnterReferralCode, tgUser) => {
 		user = await db.User.create({
 			tgId,
 			referralCode,
+			EnterReferralCode: EnterReferralCode,
 			nickName: tgUser.first_name,
 			tgUsername: tgUser.username,
 			avatarUrl: userTgAvatar,
 			createdAt: new Date(),
 		});
 
-		const referrer = await db.User.findOne({
+		let referrer = await db.User.findOne({
 			referralCode: EnterReferralCode,
 		});
 
 		if (referrer) {
 			const settings = await db.Settings.findOne({});
 
-			referrer.count += 1;
-			await referrer.save();
-
-			const referralLevels = await db.ReferralLevel.find({});
-
-			// referral code will be stored as "code1.code2.code3"
-			let refCodePath =
-				referrer.EnterReferralCode.length > 1 ? referrer.EnterReferralCode + "." + referrer.referralCode : referrer.referralCode;
-
-			// limit to referralLevels.length levels
-			if (refCodePath.split(".").length > referralLevels.length) {
-				refCodePath = refCodePath.split(".").slice(1).join(".");
-			}
-
-			const referrersCodes = refCodePath.split(".").reverse();
-			const referrers = await db.User.find({ referralCode: { $in: referrersCodes } });
-
 			// give reward to user that used referral code
 			user = await db.User.findOneAndUpdate(
 				{ tgId },
 				{
-					EnterReferralCode: refCodePath,
-					$inc: { balance: settings.referralReward },
-					referrersEarnings: referrers.map((ref) => ({
-						tgId: ref.tgId,
-						amount: 0,
-					})),
+					$inc: { balance: settings.referralReward ? settings.referralReward : 0 },
+				},
+				{ new: true }
+			);
+
+			// give reward to referrer that invited user
+			referrer = await db.User.findOneAndUpdate(
+				{ referralCode: EnterReferralCode },
+				{
+					referralCode: EnterReferralCode,
+					$inc: { balance: settings.referrerReward ? settings.referrerReward : 0 },
 				},
 				{ new: true }
 			);
 
 			// send message when somebody joined referral
+
 			await limiter.schedule(() =>
 				tgBot.sendMessage(
 					referrer.tgId,

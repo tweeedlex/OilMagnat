@@ -12,7 +12,7 @@ const bot = createTelegramBot(database);
 const app = require("./app/createExpressApp.js")({ logger, database, bot });
 const server = require("http").createServer();
 
-// setupDatabase(database);
+setupDatabase(database);
 // setupCrons(database, bot);
 
 server

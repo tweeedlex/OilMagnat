@@ -14,15 +14,14 @@ const userSchema = mongoose.Schema({
 	// game
 	oilAmount: { type: Number, default: 0, required: true },
 	notClaimedOil: { type: Number, default: 0, required: true },
-
-	// derrickLevel: { type: Number, default: 1, required: true },
-	// derrickMiningRate: { type: Number, default: 0.05, required: true },
+	oilStorageLevel: { type: Number, default: 1 },
+	maxOilAmount: { type: Number, default: 6.4 },
 	// refferal system
 	referralCode: { type: String, required: true },
-	EnterReferralCode: { type: String, default: "0" },
+	EnterReferralCode: { type: String, default: "" },
 	referralEarned: { type: Number, default: 0 },
 	count: { type: Number, default: 0, required: true }, // не понятно шо це
-	customReferralPercents: { type: Array, default: [] },
+	customReferralReward: { type: Number, default: 0 },
 	referrersEarnings: { type: Array, default: [] },
 	// tasks
 	completedTasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task", default: [] }],
@@ -30,6 +29,9 @@ const userSchema = mongoose.Schema({
 	// system settings
 	isBotBlocked: { type: Boolean, default: false },
 	// user stats info
+	totalBalanceEarned: { type: Number, default: 0 },
+	weekBalanceEarned: { type: Number, default: 0 },
+	// system stats info
 	lastLoginDate: { type: Date, default: new Date() },
 	loginsCount: { type: Number, default: 1 },
 	lastLoginIp: { type: String, default: "" },
