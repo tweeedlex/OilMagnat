@@ -1,0 +1,38 @@
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #fff;
+
+  .leaderboardRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(8, 5, 4, 0.9) 0%, rgba(51, 51, 51, 0.9) 100%);
+    border: 1px solid #fff;
+
+    &.you {
+      background: #000;
+      div {
+        color: #FFAF05;
+      }
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .money {
+        font-size: 15px;
+        margin-left: -5px;
+      }
+    }
+  }
+}
+
+.money {
+  color: #FFAF05;
+}

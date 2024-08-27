@@ -3,6 +3,7 @@ import Main from "./pages/Main/Main";
 import routes from "./consts/pageRoutes";
 import Footer from "./components/Footer/Footer";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path={routes.MAIN} element={<Main />} />
           <Route path={routes.LEADERBOARD} element={<Leaderboard />} />
+          <Route path={routes.PROFILE} element={<Profile />} />
         </Routes>
       </main>
       <Footer />

@@ -1,0 +1,86 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(8, 5, 4, 0.9) 0%, rgba(51, 51, 51, 0.9) 100%);
+  color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #fff;
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .headBlock {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      .sub {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 3px solid #CECDC8;
+    }
+  }
+
+  .table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .tableRow {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .gold {
+        color: #FFAF06;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .linkBlock {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    input {
+      background-color: rgba(0, 0, 0, 0.4);
+      font-size: 16px;
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px 16px;
+      width: 100%;
+    }
+
+    button {
+      min-width: 32px;
+      min-height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #FFCE0D 0%, #FFAF06 100%);
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}

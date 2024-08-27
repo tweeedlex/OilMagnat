@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from "./Leaderboard.module.scss";
 import coinIcon from "../../img/leaderboard/coin.png";
-import personIcon from "../../img/leaderboard/person.png"
+import personIcon from "../../img/person.png"
 import crownIcon from "../../img/leaderboard/crown.png"
-import personSmallIcon from "../../img/leaderboard/person-small.png"
+import personSmallIcon from "../../img/person-small.png"
+import PlayerList from "../../components/PlayerList/PlayerList";
 
 const Leaderboard = () => {
   return (
@@ -46,140 +47,7 @@ const Leaderboard = () => {
         </div>
       </div>
 
-      <div className={styles.leaderboard}>
-        <div className={[styles.leaderboardRow, styles.you].join(" ")}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>You rank</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-        <div className={styles.leaderboardRow}>
-          <div>
-            <p>4</p>
-            <img src={personSmallIcon}/>
-            <p>@user 123</p>
-          </div>
-          <div>
-            <img src={coinIcon}/>
-            <p className={styles.money}>3.2M</p>
-          </div>
-        </div>
-      </div>
+      <PlayerList />
     </div>
   );
 };

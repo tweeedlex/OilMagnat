@@ -62,7 +62,7 @@ body {
     flex-direction: column;
     gap: 20px;
     padding: 16px;
-    background: url("/src/img/background.png") no-repeat fixed 0 0;
+    background: url("/src/img/background.png") no-repeat fixed 0 0 / cover;
     min-height: 100vh;
     * {
         z-index: 2!important;
