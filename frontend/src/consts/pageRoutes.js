@@ -3,5 +3,6 @@ export default {
   UPGRADES: "/upgrades",
   MARKET: "/market",
   TASKS: "/tasks",
-  LEADERBOARD: "/leaderboard"
+  LEADERBOARD: "/leaderboard",
+  PROFILE: "/profile",
 }
