@@ -2,11 +2,12 @@ import React from 'react';
 import styles from "./PlayerList.module.scss";
 import personSmallIcon from "../../img/person-small.png";
 import coinIcon from "../../img/leaderboard/coin.png";
+import {Link} from "react-router-dom";
 
 const PlayerList = () => {
   return (
     <div className={styles.leaderboard}>
-      <div className={[styles.leaderboardRow, styles.you].join(" ")}>
+      <Link to={"/profile"} className={[styles.leaderboardRow, styles.you].join(" ")}>
         <div>
           <p>4</p>
           <img src={personSmallIcon}/>
@@ -16,8 +17,8 @@ const PlayerList = () => {
           <img src={coinIcon}/>
           <p className={styles.money}>3.2M</p>
         </div>
-      </div>
-      <div className={styles.leaderboardRow}>
+      </Link>
+      <Link to={"/profile"} className={styles.leaderboardRow}>
         <div>
           <p>4</p>
           <img src={personSmallIcon}/>
@@ -27,8 +28,8 @@ const PlayerList = () => {
           <img src={coinIcon}/>
           <p className={styles.money}>3.2M</p>
         </div>
-      </div>
-      <div className={styles.leaderboardRow}>
+      </Link>
+      <Link to={"/profile"} className={styles.leaderboardRow}>
         <div>
           <p>4</p>
           <img src={personSmallIcon}/>
@@ -38,7 +39,7 @@ const PlayerList = () => {
           <img src={coinIcon}/>
           <p className={styles.money}>3.2M</p>
         </div>
-      </div>
+      </Link>
     </div>
   )
 }

@@ -6,6 +6,8 @@ import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import Profile from "./pages/Profile/Profile";
 
 function App() {
+  console.log(window.Telegram.WebApp.initData);
+
   return (
     <div className="App">
       <main>
