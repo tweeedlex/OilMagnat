@@ -1,8 +1,9 @@
 const { Router } = require("express");
 const { Types } = require("mongoose");
 const ApiError = require("../../../../exceptions/api-error");
+const authMiddleware = require("../../../../middlewares/authMiddleware");
 
-module.exports = Router({ mergeParams: true }).post("/map/buyLocation", async (req, res, next) => {
+module.exports = Router({ mergeParams: true }).post("/map/buyLocation", authMiddleware, async (req, res, next) => {
 	try {
 		const { db } = req;
 		const { locationNumber } = req.body;
@@ -11,25 +12,29 @@ module.exports = Router({ mergeParams: true }).post("/map/buyLocation", async (r
 		let userLocationsModel = db.Locations;
 		let userModel = db.User;
 
+		if (!locationNumber) {
+			return next(ApiError.BadRequest(`"locationNumber" is required field`));
+		}
+
 		let user = await userModel.findOne({ tgId });
 
 		if (!user) {
-			return res.status(404).json("User not found");
+			throw res.status(404).json("User not found");
 		}
 
 		let location = await locationListModel.findOne({ locationNumber: locationNumber });
 
 		if (!location) {
-			return new ApiError(404, "Cannot find location to buy");
+			throw new ApiError(404, "Cannot find location to buy");
 		}
 
 		let userLocation = await userLocationsModel.findOne({ ownerTgId: tgId, locationId: location._id });
 		if (userLocation) {
-			return ApiError.BadRequest("This location is already bought");
+			throw ApiError.BadRequest("This location is already bought");
 		}
 
 		if (user.balance < location.lendPrice) {
-			return ApiError.BadRequest("Not enaught balance to buy");
+			throw ApiError.BadRequest("Not enaught balance to buy");
 		}
 
 		userLocation = await userLocationsModel.create({

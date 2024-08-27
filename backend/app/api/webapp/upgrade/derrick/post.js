@@ -17,37 +17,37 @@ module.exports = Router({ mergeParams: true }).post("/upgrade/derrick", authMidd
 		let user = await userModel.findOne({ tgId });
 
 		if (!user) {
-			throw res.status(404).json("User not found");
+			return next(new ApiError(404, "User not found"));
 		}
 
 		let userLocation = await userLocationsModel.findOne({ ownerTgId: tgId, locationNumber: derrickLocationNum });
 		if (!userLocation) {
-			throw ApiError.BadRequest("This location must be bought");
+			return next(ApiError.BadRequest("This location must be bought"));
 		}
 		if (!userLocation.isDerrickBought) {
-			throw ApiError.BadRequest("Derrick is not bought at this location");
+			return next(ApiError.BadRequest("Derrick is not bought at this location"));
 		}
 
 		let upgradeCost = calculateUpgradeCost(userLocation.derrickLevel);
 
 		if (user.balance < upgradeCost) {
-			throw res.status(404).json("Insufficient balance for the derrick upgrade");
+			return next(new ApiError(404, "Insufficient balance for the derrick upgrade"));
 		}
 
 		const settings = await db.Settings.findOne();
 
 		if (userLocation.derrickLevel >= settings.maxDerrickLevel) {
-			throw res.status(404).json("Maximum burger upgrade level reached");
+			return next(new ApiError(404, "Maximum derrick upgrade level reached"));
 		}
 
 		user.balance -= upgradeCost;
 		userLocation.derrickLevel += 1;
-		userLocation.derrickMiningRate += 0.2;
+		userLocation.derrickMiningRate = (userLocation.derrickMiningRate + 0.2).toFixed(2);
 
 		await user.save();
 		await userLocation.save();
 
-		res.json(user);
+		res.json({ user, userLocation });
 	} catch (error) {
 		console.error("Error upgrading burger level:", error.message);
 		next(error);
