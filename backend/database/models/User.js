@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
 	EnterReferralCode: { type: String, default: "0" },
 	referralEarned: { type: Number, default: 0 },
 	count: { type: Number, default: 0, required: true }, // не понятно шо це
-	customReferralPercents: { type: Array, default: [] },
+	customReferralReward: { type: Number, default: 0 },
 	referrersEarnings: { type: Array, default: [] },
 	// tasks
 	completedTasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task", default: [] }],

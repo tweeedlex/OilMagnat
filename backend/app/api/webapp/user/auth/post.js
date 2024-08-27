@@ -34,8 +34,6 @@ module.exports = Router({ mergeParams: true }).post("/user/auth", async (req, re
 
 		if (!user) {
 			user = await register(db, tgBot, "", initData.user);
-			console.log("user created");
-			// return next(ApiError.UnauthorizedError(`Cannot find user with tgId: ${initData.user.id}`));
 		}
 
 		if (!user.dailyUserInfoUpdated) {
