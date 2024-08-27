@@ -4,42 +4,23 @@ import personSmallIcon from "../../img/person-small.png";
 import coinIcon from "../../img/coin.png";
 import {Link} from "react-router-dom";
 
-const PlayerList = () => {
+const PlayerList = ({list = [], isNumbered = false}) => {
+  const avatarBaseUrl = `${import.meta.env.VITE_API_URL}/avatars/`;
   return (
     <div className={styles.leaderboard}>
-      <Link to={"/profile"} className={[styles.leaderboardRow, styles.you].join(" ")}>
-        <div>
-          <p>4</p>
-          <img src={personSmallIcon}/>
-          <p>Your rank</p>
-        </div>
-        <div>
-          <img src={coinIcon}/>
-          <p className={styles.money}>3.2M</p>
-        </div>
-      </Link>
-      <Link to={"/profile"} className={styles.leaderboardRow}>
-        <div>
-          <p>4</p>
-          <img src={personSmallIcon}/>
-          <p>@user 123</p>
-        </div>
-        <div>
-          <img src={coinIcon}/>
-          <p className={styles.money}>3.2M</p>
-        </div>
-      </Link>
-      <Link to={"/profile"} className={styles.leaderboardRow}>
-        <div>
-          <p>4</p>
-          <img src={personSmallIcon}/>
-          <p>@user 123</p>
-        </div>
-        <div>
-          <img src={coinIcon}/>
-          <p className={styles.money}>3.2M</p>
-        </div>
-      </Link>
+      {list.map((item, index) => (
+        <Link to={"/profile"} className={[styles.leaderboardRow].join(" ")}> {/* styles.you */}
+          <div>
+            {isNumbered && <p>{index + 1}</p>}
+            <img src={personSmallIcon}/>
+            <p>{item.name}</p>
+          </div>
+          <div>
+            <img src={coinIcon}/>
+            <p className={styles.money}>{item.balance}</p>
+          </div>
+        </Link>
+      ))}
     </div>
   )
 }

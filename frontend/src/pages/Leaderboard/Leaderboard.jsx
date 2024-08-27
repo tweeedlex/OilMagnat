@@ -47,7 +47,7 @@ const Leaderboard = () => {
         </div>
       </div>
 
-      <PlayerList />
+      <PlayerList list={[{name: "Oil", balance: 1000}]} isNumbered={true} />
     </div>
   );
 };

@@ -1,11 +1,12 @@
 import axios from "axios";
+import {getUser} from "./user";
 
 const api = axios.create({
   baseURL:  import.meta.env.VITE_API_URL ?? "/api",
 });
 
 api.interceptors.request.use((config) => {
-  config.headers["tg-init-data"] = window.Telegram.WebApp.initData;
+  config.headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
   return config;
 });
 

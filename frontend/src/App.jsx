@@ -5,9 +5,14 @@ import Footer from "./components/Footer/Footer";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import Profile from "./pages/Profile/Profile";
 import Tasks from "./pages/Tasks/Tasks";
+import {auth} from "./http/user";
+import {useEffect} from "react";
 
 function App() {
-  console.log(window.Telegram.WebApp.initData);
+  useEffect(() => {
+    auth();
+    setInterval(auth, 1000 * 60 * 50);
+  }, []);
 
   return (
     <div className="App">
