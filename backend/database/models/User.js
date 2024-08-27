@@ -14,12 +14,11 @@ const userSchema = mongoose.Schema({
 	// game
 	oilAmount: { type: Number, default: 0, required: true },
 	notClaimedOil: { type: Number, default: 0, required: true },
-
-	// derrickLevel: { type: Number, default: 1, required: true },
-	// derrickMiningRate: { type: Number, default: 0.05, required: true },
+	oilStorageLevel: { type: Number, default: 1 },
+	maxOilAmount: { type: Number, default: 1.6 },
 	// refferal system
 	referralCode: { type: String, required: true },
-	EnterReferralCode: { type: String, default: "0" },
+	EnterReferralCode: { type: String, default: "" },
 	referralEarned: { type: Number, default: 0 },
 	count: { type: Number, default: 0, required: true }, // не понятно шо це
 	customReferralReward: { type: Number, default: 0 },
