@@ -27,7 +27,7 @@ const updateDocument = async (Model) => {
 	// Perform the update if there are any fields to be set
 	if (Object.keys(updateFields).length > 0) {
 		const result = await Model.updateOne({}, { $set: updateFields });
-		console.log(`Model ${Model.modelName} update result:`, result);
+		// console.log(`Model ${Model.modelName} update result:`, result);
 	} else {
 		console.log(`No updates required for model ${Model.modelName}`);
 	}

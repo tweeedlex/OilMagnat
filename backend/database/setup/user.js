@@ -37,7 +37,7 @@ const updateExistingUsers = async (db) => {
 
 	if (bulkOps.length > 0) {
 		const result = await db.User.bulkWrite(bulkOps);
-		console.log("Bulk write result:", result);
+		// console.log("Bulk write result:", result);
 	} else {
 		console.log("No updates required");
 	}

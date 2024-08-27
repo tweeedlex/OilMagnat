@@ -15,7 +15,7 @@ const userSchema = mongoose.Schema({
 	oilAmount: { type: Number, default: 0, required: true },
 	notClaimedOil: { type: Number, default: 0, required: true },
 	oilStorageLevel: { type: Number, default: 1 },
-	maxOilAmount: { type: Number, default: 1.6 },
+	maxOilAmount: { type: Number, default: 6.4 },
 	// refferal system
 	referralCode: { type: String, required: true },
 	EnterReferralCode: { type: String, default: "" },
@@ -29,6 +29,9 @@ const userSchema = mongoose.Schema({
 	// system settings
 	isBotBlocked: { type: Boolean, default: false },
 	// user stats info
+	totalBalanceEarned: { type: Number, default: 0 },
+	weekBalanceEarned: { type: Number, default: 0 },
+	// system stats info
 	lastLoginDate: { type: Date, default: new Date() },
 	loginsCount: { type: Number, default: 1 },
 	lastLoginIp: { type: String, default: "" },

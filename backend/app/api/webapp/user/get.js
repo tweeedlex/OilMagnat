@@ -8,13 +8,34 @@ module.exports = Router({ mergeParams: true }).get("/user", authMiddleware, asyn
 
 		const user = await db.User.findOne({ tgId });
 
-		let userPosition = await db.User.getPosition(db, tgId);
-
 		if (!user) {
 			return res.status(404).json("User not found");
 		}
 
-		res.json({ user, position: userPosition });
+		let boughtLocations = await db.Locations.countDocuments({ ownerTgId: tgId });
+		let refferalsCount = await db.User.countDocuments({ EnterReferralCode: user.referralCode });
+		let workersCount = 0;
+		let totalResouces = 0;
+		let tasksCompleted = 0;
+		let totalOilProduction = 0;
+
+		let referrals = await db.User.find(
+			{ EnterReferralCode: user.referralCode },
+			{ nickName: 1, tgUsername: 1, avatarUrl: 1, balance: 1 }
+		);
+
+		res.json({
+			user,
+			company: "",
+			boughtLocations,
+			refferalsCount,
+			workersCount,
+			totalResouces,
+			tasksCompleted,
+			totalOilProduction,
+			refferalCode: user.referralCode,
+			referrals,
+		});
 	} catch (error) {
 		console.error("Error:", error.message);
 		next(error);
