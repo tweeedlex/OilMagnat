@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./Leaderboard.module.scss";
-import coinIcon from "../../img/leaderboard/coin.png";
+import coinIcon from "../../img/coin.png";
 import personIcon from "../../img/person.png"
 import crownIcon from "../../img/leaderboard/crown.png"
 import personSmallIcon from "../../img/person-small.png"

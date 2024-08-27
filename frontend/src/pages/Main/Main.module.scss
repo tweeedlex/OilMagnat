@@ -29,7 +29,7 @@
     border: 1px solid #fff;
     border-radius: 16px;
     background: linear-gradient(180deg, rgba(8, 5, 4, 0.9) 0%, rgba(51, 51, 51, 0.9) 100%);
-    padding: 6px 10px;
+    padding: 10px;
 
     a, button {
       display: flex;
@@ -45,10 +45,14 @@
 }
 
 .tools {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 70px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70px;
+
+  img {
+
+  }
 }

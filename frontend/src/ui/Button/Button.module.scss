@@ -1,0 +1,20 @@
+.button {
+  width: 90px;
+  height: 37px;
+  color: #000;
+  border-radius: 9px;
+  padding: 5px 8px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.default {
+    background: linear-gradient(180deg, #FFCE0D 0%, #FFAF06 100%);
+  }
+
+  &.inactive {
+    background-color: #fff;
+  }
+}
