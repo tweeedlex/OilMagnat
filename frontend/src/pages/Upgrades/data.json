@@ -4,69 +4,69 @@
       "level": 1,
       "price": 100,
       "value": 0.6,
-      "img": ""
+      "img": "pumpImage"
     },
     {
       "level": 2,
       "price": 1500,
       "value": 0.6,
-      "img": ""
+      "img": "pumpImage"
     },
     {
       "level": 3,
       "price": 4500,
       "value": 0.8,
-      "img": ""
+      "img": "pumpImage"
     },
     {
       "level": 4,
       "price": 13500,
       "value": 1.2,
-      "img": ""
+      "img": "pumpImage"
     },
     {
       "level": 5,
       "price": 45000,
       "value": 1.6,
-      "img": ""
+      "img": "pumpImage"
     }
   ],
   "depots": [
     {
       "level": 1,
       "price": 100,
-      "value": 0.6,
-      "img": ""
+      "value": 1.6,
+      "img": "depotImage1"
     },
     {
       "level": 2,
-      "price": 1500,
-      "value": 0.6,
-      "img": ""
+      "price": 650,
+      "value": 2.4,
+      "img": "depotImage2"
     },
     {
       "level": 3,
-      "price": 4500,
-      "value": 0.8,
-      "img": ""
+      "price": 2500,
+      "value": 3.2,
+      "img": "depotImage3"
     },
     {
       "level": 4,
-      "price": 13500,
-      "value": 1.2,
-      "img": ""
+      "price": 4000,
+      "value": 4.0,
+      "img": "depotImage4"
     },
     {
       "level": 5,
-      "price": 45000,
-      "value": 1.6,
-      "img": ""
+      "price": 6000,
+      "value": 4.8,
+      "img": "depotImage5"
     },
     {
       "level": 6,
       "price": 10000,
       "value": 5.6,
-      "img": ""
+      "img": "depotImage6"
     }
   ],
   "boosts": [
@@ -74,31 +74,31 @@
       "level": 1,
       "price": 100,
       "value": 10,
-      "img": ""
+      "img": "boostImage1"
     },
     {
       "level": 2,
       "price": 1500,
       "value": 20,
-      "img": ""
+      "img": "boostImage2"
     },
     {
       "level": 3,
       "price": 4500,
       "value": 30,
-      "img": ""
+      "img": "boostImage3"
     },
     {
       "level": 4,
       "price": 13500,
       "value": 40,
-      "img": ""
+      "img": "boostImage4"
     },
     {
       "level": 5,
       "price": 45000,
       "value": 50,
-      "img": ""
+      "img": "boostImage5"
     }
   ]
 }
