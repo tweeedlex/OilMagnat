@@ -3,17 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export const dataSlice = createSlice({
   name: "data",
   initialState: {
-    telegramData: {},
+    user: {},
   },
   reducers: {
-    setTelegramData: (state, action) => {
-      state.telegramData = action.payload;
+    setUser: (state, action) => {
+      state.user = action.payload;
     },
   },
 });
 
 export const {
-  setTelegramData,
+  setUser,
 } = dataSlice.actions;
 
 export default dataSlice.reducer;

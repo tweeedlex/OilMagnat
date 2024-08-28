@@ -7,11 +7,15 @@ import Profile from "./pages/Profile/Profile";
 import Tasks from "./pages/Tasks/Tasks";
 import {auth} from "./http/user";
 import {useEffect} from "react";
+import Upgrades from "./pages/Upgrades/Upgrades";
+import {useDispatch} from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    auth();
-    setInterval(auth, 1000 * 60 * 50);
+    auth(dispatch);
+    setInterval(() => auth(dispatch), 1000 * 60 * 50);
   }, []);
 
   return (
@@ -22,6 +26,7 @@ function App() {
           <Route path={routes.LEADERBOARD} element={<Leaderboard />} />
           <Route path={routes.PROFILE} element={<Profile />} />
           <Route path={routes.TASKS} element={<Tasks />} />
+          <Route path={routes.UPGRADES} element={<Upgrades />} />
         </Routes>
       </main>
       <Footer />

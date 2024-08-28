@@ -5,14 +5,14 @@ import personIcon from "../../img/person.png"
 import crownIcon from "../../img/leaderboard/crown.png"
 import personSmallIcon from "../../img/person-small.png"
 import PlayerList from "../../components/PlayerList/PlayerList";
+import Switch from "../../ui/Switch/Switch";
 
 const Leaderboard = () => {
   return (
     <div className="page with-footer">
-      <div className={styles.switch}>
-        <button className={styles.active}>For the week</button>
-        <button>For all time</button>
-      </div>
+      <Switch
+        defaultOptions={[{ text: "For the week", isActive: true }, { text: "For all time" }]}
+      />
       <div className={styles.top}>
         <div className={[styles.topBlock, styles.topBlockSilver].join(" ")}>
           <div className={styles.topImageWrapper}>

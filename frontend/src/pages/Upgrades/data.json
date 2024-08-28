@@ -1,0 +1,104 @@
+{
+  "pumps": [
+    {
+      "level": 1,
+      "price": 100,
+      "value": 0.6,
+      "img": ""
+    },
+    {
+      "level": 2,
+      "price": 1500,
+      "value": 0.6,
+      "img": ""
+    },
+    {
+      "level": 3,
+      "price": 4500,
+      "value": 0.8,
+      "img": ""
+    },
+    {
+      "level": 4,
+      "price": 13500,
+      "value": 1.2,
+      "img": ""
+    },
+    {
+      "level": 5,
+      "price": 45000,
+      "value": 1.6,
+      "img": ""
+    }
+  ],
+  "depots": [
+    {
+      "level": 1,
+      "price": 100,
+      "value": 0.6,
+      "img": ""
+    },
+    {
+      "level": 2,
+      "price": 1500,
+      "value": 0.6,
+      "img": ""
+    },
+    {
+      "level": 3,
+      "price": 4500,
+      "value": 0.8,
+      "img": ""
+    },
+    {
+      "level": 4,
+      "price": 13500,
+      "value": 1.2,
+      "img": ""
+    },
+    {
+      "level": 5,
+      "price": 45000,
+      "value": 1.6,
+      "img": ""
+    },
+    {
+      "level": 6,
+      "price": 10000,
+      "value": 5.6,
+      "img": ""
+    }
+  ],
+  "boosts": [
+    {
+      "level": 1,
+      "price": 100,
+      "value": 10,
+      "img": ""
+    },
+    {
+      "level": 2,
+      "price": 1500,
+      "value": 20,
+      "img": ""
+    },
+    {
+      "level": 3,
+      "price": 4500,
+      "value": 30,
+      "img": ""
+    },
+    {
+      "level": 4,
+      "price": 13500,
+      "value": 40,
+      "img": ""
+    },
+    {
+      "level": 5,
+      "price": 45000,
+      "value": 50,
+      "img": ""
+    }
+  ]
+}
