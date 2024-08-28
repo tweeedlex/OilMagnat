@@ -9,7 +9,7 @@ const PlayerList = ({list = [], isNumbered = false}) => {
   return (
     <div className={styles.leaderboard}>
       {list.map((item, index) => (
-        <div className={[styles.leaderboardRow].join(" ")}> {/* styles.you */}
+        <div key={item.index} className={[styles.leaderboardRow].join(" ")}> {/* styles.you */}
           <div>
             {isNumbered && <p>{index + 1}</p>}
             <img src={personSmallIcon}/>
