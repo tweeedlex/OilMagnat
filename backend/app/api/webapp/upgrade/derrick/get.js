@@ -16,9 +16,9 @@ module.exports = Router({ mergeParams: true }).get("/upgrade/derrick", authMiddl
 			throw res.status(404).json("User not found");
 		}
 
-		let userLocations = await userLocationsModel.findOne(
-			{ ownerTgId: tgId, isDerrickBought: true },
-			{ derrickLevel: 1, locationNumber: 1, boughtAt: true }
+		let userLocations = await userLocationsModel.find(
+			{ ownerTgId: tgId },
+			{ derrickLevel: 1, locationNumber: 1, boughtAt: 1, isDerrickBought: 1 }
 		);
 
 		res.json({ userLocations });
