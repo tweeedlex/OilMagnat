@@ -5,13 +5,16 @@ const authMiddleware = require("../../../middlewares/authMiddleware");
 module.exports = Router({ mergeParams: true }).post("/workers/hire", authMiddleware, async (req, res, next) => {
 	try {
 		const { db } = req;
-		const { workerType } = req.body;
+		const { workerType, buyWith = 1 } = req.body;
 		const tgId = req.user.id;
 		let workersListModel = db.WorkersList;
 		let userWorkersModel = db.Workers;
 		let userModel = db.User;
 		if (!workerType) {
 			return next(ApiError.BadRequest("workerType is required field"));
+		}
+		if (![1, 2].includes(buyWith)) {
+			return next(ApiError.BadRequest("Invalid type of buyWith field"));
 		}
 
 		let user = await userModel.findOne({ tgId });
@@ -34,11 +37,17 @@ module.exports = Router({ mergeParams: true }).post("/workers/hire", authMiddlew
 			return element.workerLevel == highestUserLevelWorker + 1;
 		});
 
-		if (user.balance < newWorker.workerPriceUSD) {
-			return next(new ApiError(404, "Insufficient balance for buying new worker"));
+		if (buyWith == 1) {
+			if (user.balance < newWorker.workerPriceUSD) {
+				return next(new ApiError(404, "Insufficient balance for buying new worker"));
+			}
+			user.balance -= newWorker.workerPriceUSD;
+		} else if (buyWith == 2) {
+			if (user.oilAmount < newWorker.workerPriceBBL) {
+				return next(new ApiError(404, "Insufficient balance for buying new worker"));
+			}
+			user.oilAmount -= newWorker.workerPriceBBL;
 		}
-
-		user.balance -= newWorker.workerPriceUSD;
 
 		await userWorkersModel.create({
 			ownerTgId: tgId,
@@ -49,12 +58,9 @@ module.exports = Router({ mergeParams: true }).post("/workers/hire", authMiddlew
 			workerBonus: newWorker.workerBonus,
 		});
 
-		// user.oilStorageLevel += 1;
-		// user.maxOilAmount = parseFloat((user.maxOilAmount * 2).toFixed(2));
-
 		await user.save();
 
-		userWorkers = await userWorkersModel.find({ ownerTgId: tgId, workerType: workerType });
+		userWorkers = await userWorkersModel.find({ ownerTgId: tgId });
 
 		res.json({ user, userWorkers });
 	} catch (error) {

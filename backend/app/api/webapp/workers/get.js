@@ -5,7 +5,6 @@ const authMiddleware = require("../../../middlewares/authMiddleware");
 module.exports = Router({ mergeParams: true }).get("/workers/get", authMiddleware, async (req, res, next) => {
 	try {
 		const { db } = req;
-
 		const tgId = req.user.id;
 		let workersListModel = db.WorkersList;
 		let userWorkersModel = db.Workers;
