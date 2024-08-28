@@ -15,13 +15,13 @@ module.exports = Router({ mergeParams: true }).post("/upgrade/oilStorage", authM
 
 		let upgradeCost = calculateUpgradeCost(user.oilStorageLevel);
 		if (user.balance < upgradeCost) {
-			return next(new ApiError(404, "Insufficient balance for the burger upgrade"));
+			return next(new ApiError(404, "Insufficient balance for the oilStorage upgrade"));
 		}
 
 		const settings = await db.Settings.findOne();
 
 		if (user.oilStorageLevel >= settings.maxOilStorageLevel) {
-			return next(new ApiError(404, "Maximum burger upgrade level reached"));
+			return next(new ApiError(404, "Maximum oilStorage upgrade level reached"));
 		}
 
 		user.balance -= upgradeCost;
@@ -32,7 +32,7 @@ module.exports = Router({ mergeParams: true }).post("/upgrade/oilStorage", authM
 
 		res.json({ user, upgradeCost });
 	} catch (error) {
-		console.error("Error upgrading burger level:", error.message);
+		console.error("Error upgrading oilStorage level:", error.message);
 		next(error);
 	}
 });

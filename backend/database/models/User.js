@@ -30,6 +30,7 @@ const userSchema = mongoose.Schema({
 	isBotBlocked: { type: Boolean, default: false },
 	// user stats info
 	totalBalanceEarned: { type: Number, default: 0 },
+	totalOilEarned: { type: Number, default: 0 },
 	weekBalanceEarned: { type: Number, default: 0 },
 	// system stats info
 	lastLoginDate: { type: Date, default: new Date() },

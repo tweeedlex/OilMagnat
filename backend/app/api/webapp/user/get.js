@@ -14,10 +14,11 @@ module.exports = Router({ mergeParams: true }).get("/user", authMiddleware, asyn
 
 		let boughtLocations = await db.Locations.countDocuments({ ownerTgId: tgId });
 		let refferalsCount = await db.User.countDocuments({ EnterReferralCode: user.referralCode });
-		let workersCount = 0;
-		let totalResouces = 0;
+		let workersCount = await db.Workers.countDocuments({ ownerTgId: tgId });
+		let generalWorkerCount = await db.WorkersList.countDocuments({});
+		let totalResouces = user.totalOilEarned;
 		let tasksCompleted = 0;
-		let totalOilProduction = 0;
+		let totalOilProduction = user.totalBalanceEarned;
 
 		let referrals = await db.User.find(
 			{ EnterReferralCode: user.referralCode },
@@ -29,7 +30,7 @@ module.exports = Router({ mergeParams: true }).get("/user", authMiddleware, asyn
 			company: "",
 			boughtLocations,
 			refferalsCount,
-			workersCount,
+			workers: { workersCount, generalWorkerCount },
 			totalResouces,
 			tasksCompleted,
 			totalOilProduction,
