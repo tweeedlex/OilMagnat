@@ -5,36 +5,15 @@ import mapIcon from "../../img/main/map.png"
 import personalIcon from "../../img/main/personal.png"
 import companyIcon from "../../img/main/company.png"
 import profileIcon from "../../img/main/profile.png"
-import bblIcon from "../../img/main/bbl.png"
-import dollarIcon from "../../img/main/dollar.png"
 import repairIcon from "../../img/main/repair.png"
 import pumpIcon from "../../img/main/pump.png"
-import durabilityIcon from "../../img/main/durability.svg"
+import Header from "../../components/Header/Header";
 
 const Main = () => {
   return (
     <div className={[styles.page, "page", "with-footer"].join(" ")}>
       <header className={styles.header}>
-        <div className={styles.info}>
-          <div className={styles.infoSide}>
-            <img src={bblIcon} width={32} alt={""}/>
-            <p>10,000 <span>BBL</span></p>
-          </div>
-          <svg width="0" height="0">
-            <defs>
-              <clipPath id="roundedPolygon" clipPathUnits="objectBoundingBox">
-                <polygon points="0 0, 1 0.01, 0.8 1, 0.2 1.01"/>
-              </clipPath>
-            </defs>
-          </svg>
-          <div className={styles.oilStorage}>
-            <p className={styles.oilAmount}>231,321</p>
-          </div>
-          <div className={[styles.infoSide, styles.right].join(" ")}>
-            <img src={dollarIcon} width={32} alt={""}/>
-            <p>10,000 <span>$</span></p>
-          </div>
-        </div>
+        <Header />
         <nav className={styles.navigation}>
           <Link to={""}>
             <img src={mapIcon} width={24} height={24} alt={""}/>

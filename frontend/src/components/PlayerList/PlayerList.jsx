@@ -9,7 +9,7 @@ const PlayerList = ({list = [], isNumbered = false}) => {
   return (
     <div className={styles.leaderboard}>
       {list.map((item, index) => (
-        <Link to={"/profile"} className={[styles.leaderboardRow].join(" ")}> {/* styles.you */}
+        <div className={[styles.leaderboardRow].join(" ")}> {/* styles.you */}
           <div>
             {isNumbered && <p>{index + 1}</p>}
             <img src={personSmallIcon}/>
@@ -19,7 +19,7 @@ const PlayerList = ({list = [], isNumbered = false}) => {
             <img src={coinIcon}/>
             <p className={styles.money}>{item.balance}</p>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   )

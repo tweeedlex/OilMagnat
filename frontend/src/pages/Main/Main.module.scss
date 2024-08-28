@@ -11,17 +11,6 @@
   gap: 5px;
   align-items: center;
 
-  .info {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 60px;
-    margin-bottom: 8px;
-    position: relative;
-  }
-
   .navigation {
     display: flex;
     gap: 10px;
@@ -47,59 +36,6 @@
     }
   }
 }
-
-.oilStorage {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 23.87px;
-  letter-spacing: -0.30000001192092896px;
-  text-align: center;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 50%;
-  height: 110%;
-  background: #888;
-  clip-path: polygon(0% 0%,100.00% 1.00%,78.00% 100.00%,22% 101%);
-  border-radius: 10px;
-  background: url("/src/img/main/bg.png") no-repeat 0 0 / cover, linear-gradient(360deg, #000000 -6.41%, #333333 100%);
-  border-top: 1px solid #fff;
-  text-shadow: 0px 2px 4px #00000054;
-
-  &::before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 50%;
-    background: #FFCE0D;
-    bottom: 0;
-  }
-}
-
-.infoSide {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  background: urL("/src/img/main/left.png") no-repeat 0 0 / contain;
-  padding: 10px;
-  color: #fff;
-  gap: 5px;
-  width: 33%;
-  font-size: 15px;
-  font-weight: 600;
-
-  span {
-    font-size: 12px;
-  }
-
-  &.right {
-    align-items: end;
-    background: urL("/src/img/main/right.png") no-repeat 100% 0 / contain;
-  }
-}
-
 
 .tools {
   display: flex;

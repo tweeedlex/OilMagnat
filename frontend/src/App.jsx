@@ -9,6 +9,7 @@ import {auth} from "./http/user";
 import {useEffect} from "react";
 import Upgrades from "./pages/Upgrades/Upgrades";
 import {useDispatch} from "react-redux";
+import Market from "./pages/Market/Market";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
           <Route path={routes.PROFILE} element={<Profile />} />
           <Route path={routes.TASKS} element={<Tasks />} />
           <Route path={routes.UPGRADES} element={<Upgrades />} />
+          <Route path={routes.MARKET} element={<Market />} />
         </Routes>
       </main>
       <Footer />
