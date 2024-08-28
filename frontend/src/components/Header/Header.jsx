@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 import bblIcon from "../../img/main/bbl.png";
 import dollarIcon from "../../img/main/dollar.png";
 
-const Header = ({isVisible}) => {
+const Header = ({isVisible = true}) => {
   return (
     <div className={styles.info} style={{display: (isVisible ? "flex" : "none")}}>
       <div className={styles.infoSide}>
