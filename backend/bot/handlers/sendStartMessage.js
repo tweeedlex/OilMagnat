@@ -16,24 +16,6 @@ async function sendStartMessage(tgBot, userId) {
 						},
 					},
 				],
-				[
-					{
-						text: "🧐 How to play",
-						callback_data: "how_to_play",
-					},
-				],
-				[
-					{
-						text: "🦀 Community",
-						callback_data: "join_community",
-					},
-				],
-				[
-					{
-						text: "💳 Wallet",
-						callback_data: "add_wallet",
-					},
-				],
 			],
 		},
 	};

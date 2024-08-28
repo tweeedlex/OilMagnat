@@ -5,7 +5,7 @@ const authMiddleware = require("../../../middlewares/authMiddleware");
 module.exports = Router({ mergeParams: true }).post("/workers/hire", authMiddleware, async (req, res, next) => {
 	try {
 		const { db } = req;
-		const { workerType, buyWith = 1 } = req.body;
+		const { workerType, buyWith = 1 } = req.body; // buyWith 1 - за USD, 2 - за BBL
 		const tgId = req.user.id;
 		let workersListModel = db.WorkersList;
 		let userWorkersModel = db.Workers;
