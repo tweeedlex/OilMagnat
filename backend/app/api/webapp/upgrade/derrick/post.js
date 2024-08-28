@@ -5,7 +5,7 @@ const authMiddleware = require("../../../../middlewares/authMiddleware");
 module.exports = Router({ mergeParams: true }).post("/upgrade/derrick", authMiddleware, async (req, res, next) => {
 	try {
 		const { db } = req;
-		const { derrickLocationNum } = req.body;
+		const { derrickLocationNum } = req.body; // номер локації на якій юзер буде прокачувати вишку
 		const tgId = req.user.id;
 		let userLocationsModel = db.Locations;
 		let userModel = db.User;
