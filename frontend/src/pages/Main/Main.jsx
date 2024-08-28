@@ -7,6 +7,9 @@ import companyIcon from "../../img/main/company.png"
 import profileIcon from "../../img/main/profile.png"
 import bblIcon from "../../img/main/bbl.png"
 import dollarIcon from "../../img/main/dollar.png"
+import repairIcon from "../../img/main/repair.png"
+import pumpIcon from "../../img/main/pump.png"
+import durabilityIcon from "../../img/main/durability.svg"
 
 const Main = () => {
   return (
@@ -45,7 +48,7 @@ const Main = () => {
             <img src={companyIcon} width={24} height={24} alt={""}/>
             <p>Company</p>
           </Link>
-          <Link to={""}>
+          <Link to={"/profile"}>
             <img src={profileIcon} width={24} height={24} alt={""}/>
             <p>Profile</p>
           </Link>
@@ -53,14 +56,14 @@ const Main = () => {
       </header>
       <div className={styles.tools}>
         <button>
-          <img alt={""}/>
+          <img src={repairIcon} alt={""}/>
           <p>Repair</p>
         </button>
         <div className={styles.durability}>
-          <p>80%</p>
+          <p>80 %</p>
         </div>
         <button>
-          <img alt={""}/>
+          <img src={pumpIcon} alt={""}/>
           <p>Pump oil</p>
         </button>
       </div>
