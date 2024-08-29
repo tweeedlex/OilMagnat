@@ -72,5 +72,5 @@ jobs:
         with:
           app-name: 'OilMagnate'
           slot-name: 'Production'
-          package: .
+          package: ./backend/
           
