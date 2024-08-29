@@ -23,9 +23,9 @@ async function oilPumping(db) {
 		// 		},
 		// 	]
 		// );
-		// console.log(`Energy given to automining users.`);
+		console.log(`Oil given to users.`);
 	} catch (error) {
-		console.error("Error giving energy to automining users:", error);
+		console.error("Error giving oil users:", error);
 	}
 }
 

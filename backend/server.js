@@ -13,7 +13,7 @@ const app = require("./app/createExpressApp.js")({ logger, database, bot });
 const server = require("http").createServer();
 
 setupDatabase(database);
-// setupCrons(database, bot);
+setupCrons(database, bot);
 
 server
 	.on("request", app)
