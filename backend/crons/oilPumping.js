@@ -23,7 +23,7 @@ async function oilPumping(db) {
 		// 		},
 		// 	]
 		// );
-		console.log(`Oil given to users.`);
+		// console.log(`Oil given to users.`);
 	} catch (error) {
 		console.error("Error giving oil users:", error);
 	}
