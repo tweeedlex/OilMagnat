@@ -5,4 +5,5 @@ const settingsSchema = (module.exports = mongoose.Schema({
 	referrerReward: { type: Number, default: 500 },
 	maxOilStorageLevel: { type: Number, default: 6 },
 	maxDerrickLevel: { type: Number, default: 5 },
+	oilToUSDCurrency: { type: Number, default: 50 },
 }));
