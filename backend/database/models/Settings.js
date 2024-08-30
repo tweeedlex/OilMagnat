@@ -6,5 +6,5 @@ const settingsSchema = (module.exports = mongoose.Schema({
 	maxOilStorageLevel: { type: Number, default: 6 },
 	maxDerrickLevel: { type: Number, default: 5 },
 	oilToUSDCurrency: { type: Number, default: 50 },
-	tradeOilTax: { type: Number, default: 20 },
+	defaultTradeOilTax: { type: Number, default: 20 },
 }));

@@ -14,9 +14,14 @@ const userSchema = mongoose.Schema({
 	// game
 	oilAmount: { type: Number, default: 0, required: true },
 	notClaimedOil: { type: Number, default: 0, required: true },
+	isOilPumping: { type: Boolean, default: false },
+	// upgrades (oil)
 	oilStorageLevel: { type: Number, default: 1 },
 	maxOilAmount: { type: Number, default: 6.4 },
-	isOilPumping: { type: Boolean, default: false },
+	// upgrades (workers)
+	repairWorkerLevel: { type: Number, default: 0 },
+	traderWorkerLevel: { type: Number, default: 0 },
+	consultantWorkerLevel: { type: Number, default: 0 },
 	// refferal system
 	referralCode: { type: String, required: true },
 	EnterReferralCode: { type: String, default: "" },

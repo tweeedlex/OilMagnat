@@ -21,7 +21,8 @@ module.exports = Router({ mergeParams: true }).get("/transferMarket", authMiddle
 			return next(ApiError.BadRequest("Cannot find settings object"));
 		}
 
-		let tradeOilTax = settings.tradeOilTax;
+		let tradeOilTax = settings.defaultTradeOilTax;
+
 		let currency = settings.oilToUSDCurrency;
 		let availableOil = user.oilAmount;
 		let availableUSD = user.balance;
