@@ -16,6 +16,7 @@ const userSchema = mongoose.Schema({
 	notClaimedOil: { type: Number, default: 0, required: true },
 	oilStorageLevel: { type: Number, default: 1 },
 	maxOilAmount: { type: Number, default: 6.4 },
+	isOilPumping: { type: Boolean, default: false },
 	// refferal system
 	referralCode: { type: String, required: true },
 	EnterReferralCode: { type: String, default: "" },

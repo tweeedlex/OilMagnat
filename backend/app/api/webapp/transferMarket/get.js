@@ -21,11 +21,12 @@ module.exports = Router({ mergeParams: true }).get("/transferMarket", authMiddle
 			return next(ApiError.BadRequest("Cannot find settings object"));
 		}
 
+		let tradeOilTax = settings.tradeOilTax;
 		let currency = settings.oilToUSDCurrency;
 		let availableOil = user.oilAmount;
 		let availableUSD = user.balance;
 
-		res.json({ currency, availableOil, availableUSD });
+		res.json({ currency, availableOil, availableUSD, tradeOilTax });
 	} catch (error) {
 		console.error("Error while buying a derrick:", error);
 		next(error);
