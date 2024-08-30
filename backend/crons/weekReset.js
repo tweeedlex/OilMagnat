@@ -1,5 +1,6 @@
 const cron = require("node-cron");
 const moment = require("moment-timezone");
+const { getConsultantWorkerBonus } = require("../app/helpers/traders");
 
 async function resetWeakEarning(db) {
 	const { User } = db;
@@ -17,6 +18,37 @@ async function resetWeakEarning(db) {
 	}
 }
 
+async function takeWeeklyTax(db) {
+	try {
+		const { Settings, User } = db;
+		const settings = await Settings.findOne({});
+		const defaultWeeklyOilTax = settings.defaultWeeklyTax;
+
+		// Получаем всех пользователей с необходимыми полями
+		const users = await User.find();
+
+		// Создаем массив обновлений
+		const bulkOps = users.map((user) => {
+			const consultantWorkerBonus = getConsultantWorkerBonus(user.consultantWorkerLevel, settings);
+			const tradeOilTaxPercent = (defaultWeeklyOilTax - consultantWorkerBonus) / 100;
+			const deductionAmount = user.weekBalanceEarned * tradeOilTaxPercent;
+
+			return {
+				updateOne: {
+					filter: { _id: user._id },
+					update: { $set: { balance: user.balance - deductionAmount } },
+				},
+			};
+		});
+
+		// Выполняем все обновления за один запрос
+		await User.bulkWrite(bulkOps);
+		return bulkOps;
+	} catch (e) {
+		console.log(e);
+	}
+}
+
 function timeUntilMidnightUTC() {
 	const now = moment().utc();
 	const midnight = moment().utc().endOf("day");
@@ -29,10 +61,11 @@ function timeUntilMidnightUTC() {
 	console.log(`Time until 00:00 UTC: ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`);
 }
 
-const startNightResetSchedule = (db) => {
+const startWeekResetSchedule = (db) => {
 	cron.schedule(
 		"0 0 * * 0", // Запускаем каждое воскресенье в 00:00
-		() => {
+		async () => {
+			await takeWeeklyTax(db);
 			resetWeakEarning(db);
 		},
 		{
@@ -45,4 +78,4 @@ const startNightResetSchedule = (db) => {
 	timeUntilMidnightUTC();
 };
 
-module.exports = startNightResetSchedule;
+module.exports = startWeekResetSchedule;
