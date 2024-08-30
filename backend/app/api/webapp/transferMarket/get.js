@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const ApiError = require("../../../exceptions/api-error");
 const authMiddleware = require("../../../middlewares/authMiddleware");
+const { getTraderWorkerBonus } = require("../../../helpers/traders");
 
 // get current derrick level
 module.exports = Router({ mergeParams: true }).get("/transferMarket", authMiddleware, async (req, res, next) => {
@@ -21,13 +22,14 @@ module.exports = Router({ mergeParams: true }).get("/transferMarket", authMiddle
 			return next(ApiError.BadRequest("Cannot find settings object"));
 		}
 
-		let tradeOilTax = settings.defaultTradeOilTax;
+		let defaultTradeOilTax = settings.defaultTradeOilTax;
+		let tradeOilTaxPercent = defaultTradeOilTax - getTraderWorkerBonus(user.traderWorkerLevel);
 
 		let currency = settings.oilToUSDCurrency;
 		let availableOil = user.oilAmount;
 		let availableUSD = user.balance;
 
-		res.json({ currency, availableOil, availableUSD, tradeOilTax });
+		res.json({ currency, availableOil, availableUSD, tradeOilTax: tradeOilTaxPercent });
 	} catch (error) {
 		console.error("Error while buying a derrick:", error);
 		next(error);
