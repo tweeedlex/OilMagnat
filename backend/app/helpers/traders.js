@@ -20,5 +20,27 @@ const getTraderWorkerBonus = (workerLevel) => {
 	}
 	return workerBonus;
 };
+const getWorkersPrice = (workerLevel) => {
+	let workerPrice = 0;
 
-module.exports = { getTraderWorkerBonus };
+	switch (workerLevel) {
+		case 1:
+			workerPrice = 200;
+			break;
+		case 2:
+			workerPrice = 400;
+			break;
+		case 3:
+			workerPrice = 800;
+			break;
+		case 4:
+			workerPrice = 1600;
+			break;
+		case 5:
+			workerPrice = 3200;
+			break;
+	}
+	return workerPrice;
+};
+
+module.exports = { getTraderWorkerBonus, getWorkersPrice };
