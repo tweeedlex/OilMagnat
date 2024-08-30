@@ -37,7 +37,15 @@ async function oilPumping(db) {
 		const bulkOps = [];
 
 		for (const user of users) {
-			if (user.notClaimedOil >= user.maxOilAmount) continue;
+			if (user.notClaimedOil >= user.maxOilAmount) {
+				bulkOps.push({
+					updateOne: {
+						filter: { _id: user._id },
+						update: { isOilPumping: false },
+					},
+				});
+				continue;
+			}
 
 			let userDerricks = user.userLocations;
 			if (!userDerricks || userDerricks.length === 0) continue;
