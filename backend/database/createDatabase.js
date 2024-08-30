@@ -4,9 +4,9 @@ const path = require("path");
 module.exports = ({ logger, mongoose }) => {
 	const url = process.env.MONGODB_URL;
 
-	mongoose.set("debug", (coll, method, query, doc, options = {}) => {
-		logger.info(`${coll},${method},${JSON.stringify(query)},${JSON.stringify(options)}`);
-	});
+	// mongoose.set("debug", (coll, method, query, doc, options = {}) => {
+	// 	logger.info(`${coll},${method},${JSON.stringify(query)},${JSON.stringify(options)}`);
+	// });
 
 	mongoose.connect(url, { useNewUrlParser: true });
 

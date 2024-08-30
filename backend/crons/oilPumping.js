@@ -1,44 +1,46 @@
 // ? models
-const SECONDS_INTERVAL = 30;
+const SECONDS_INTERVAL = 10;
 
 async function oilPumping(db) {
-	const { User } = db;
+	const { User, Locations } = db;
 	try {
+		let startTime = new Date();
 		let users = await User.aggregate([
 			{
-				$match: { isOilPumping: true }, // Фильтруем пользователей с isOilPumping: true
+				$match: { isOilPumping: true },
 			},
 			{
 				$lookup: {
-					from: db.Locations.collection.collectionName, // Коллекция локаций
-					localField: "tgId", // Поле пользователя, по которому связываем
-					foreignField: "ownerTgId", // Поле локации, по которому связываем
-					as: "userLocations", // Имя нового поля с локациями
+					from: db.Locations.collection.collectionName,
+					localField: "tgId",
+					foreignField: "ownerTgId",
+					as: "userLocations",
 				},
 			},
 			{
-				$unwind: "$userLocations", // Разворачиваем массив userLocations для фильтрации
+				$unwind: "$userLocations",
 			},
 			{
-				$match: { "userLocations.isDerrickBought": true }, // Фильтруем только те локации, у которых isDerrickBought: true
+				$match: { "userLocations.isDerrickBought": true, "userLocations.isDerrickAvailable": true },
 			},
 			{
 				$group: {
-					_id: "$_id", // Группируем по ID пользователя
-					tgId: { $first: "$tgId" }, // Сохраняем tgId пользователя
-					isOilPumping: { $first: "$isOilPumping" }, // Сохраняем флаг isOilPumping
-					userLocations: { $push: "$userLocations" }, // Собираем локации обратно в массив
+					_id: "$_id",
+					tgId: { $first: "$tgId" },
+					isOilPumping: { $first: "$isOilPumping" },
+					userLocations: { $push: "$userLocations" },
 					notClaimedOil: { $first: "$notClaimedOil" },
 					maxOilAmount: { $first: "$maxOilAmount" },
 				},
 			},
 		]);
 
-		const bulkOps = [];
+		let userBulkOps = [];
+		let derricksBulkOps = [];
 
 		for (const user of users) {
 			if (user.notClaimedOil >= user.maxOilAmount) {
-				bulkOps.push({
+				userBulkOps.push({
 					updateOne: {
 						filter: { _id: user._id },
 						update: { isOilPumping: false },
@@ -54,13 +56,29 @@ async function oilPumping(db) {
 
 			for (const derrick of userDerricks) {
 				if (derrick.derrickDurability == 0 || !derrick) continue;
-				totalDerrickMined += derrick.derrickMiningRate;
+				totalDerrickMined += derrick.derrickMiningRate / 360;
+				let newDerrickDurability = parseFloat((derrick.derrickDurability - derrick.derrickDurabilityRate / 360).toFixed(2));
+				if (newDerrickDurability > 0) {
+					derricksBulkOps.push({
+						updateOne: {
+							filter: { _id: derrick._id },
+							update: { derrickDurability: newDerrickDurability },
+						},
+					});
+				} else {
+					derricksBulkOps.push({
+						updateOne: {
+							filter: { _id: derrick._id },
+							update: { derrickDurability: 0, isDerrickAvailable: false },
+						},
+					});
+				}
 			}
 
 			// Вычисляем максимальное значение, которое можно добавить
 			const maxAddableOil = user.maxOilAmount - user.notClaimedOil;
 			const oilToAdd = Math.min(totalDerrickMined, maxAddableOil);
-			bulkOps.push({
+			userBulkOps.push({
 				updateOne: {
 					filter: { _id: user._id },
 					update: { $inc: { notClaimedOil: oilToAdd } },
@@ -68,23 +86,32 @@ async function oilPumping(db) {
 			});
 
 			// Применяем пакетные обновления, если пакет достиг определенного размера
-			if (bulkOps.length >= 1000) {
-				await User.bulkWrite(bulkOps);
-				bulkOps = [];
-				bulkOps.length = 0;
+			if (userBulkOps.length >= 1000) {
+				await User.bulkWrite(userBulkOps);
+				userBulkOps = [];
+				userBulkOps.length = 0;
+			}
+			if (derricksBulkOps.length >= 1000) {
+				await Locations.bulkWrite(derricksBulkOps);
+				derricksBulkOps = [];
+				derricksBulkOps.length = 0;
 			}
 		}
 		// Применяем оставшиеся обновления
-		if (bulkOps.length > 0) {
-			await User.bulkWrite(bulkOps);
+		if (userBulkOps.length > 0) {
+			await User.bulkWrite(userBulkOps);
+		} // Применяем оставшиеся обновления
+		if (derricksBulkOps.length > 0) {
+			await Locations.bulkWrite(derricksBulkOps);
 		}
+		console.log(`job done ${startTime} - ${new Date()}`);
 	} catch (error) {
 		console.error("Error giving oil users:", error);
 	}
 }
 
-const startOilPumping = (db) => {
-	oilPumping(db);
+const startOilPumping = async (db) => {
+	await oilPumping(db);
 	setInterval(() => oilPumping(db), SECONDS_INTERVAL * 1000);
 };
 
