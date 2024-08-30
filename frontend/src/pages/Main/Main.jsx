@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import styles from "./Main.module.scss"
 import mapIcon from "../../img/main/map.png"
@@ -8,8 +8,18 @@ import profileIcon from "../../img/main/profile.png"
 import repairIcon from "../../img/main/repair.png"
 import pumpIcon from "../../img/main/pump.png"
 import Header from "../../components/Header/Header";
+import {getMainPageInfo} from "../../http/main";
 
 const Main = () => {
+  const [mainPageInfo, setMainPageInfo] = useState({});
+
+  useEffect(() => {
+    getMainPageInfo().then(data => {
+      console.log(data);
+      setMainPageInfo(data);
+    })
+  }, []);
+
   return (
     <div className={[styles.page, "page", "with-footer"].join(" ")}>
       <header className={styles.header}>
@@ -39,7 +49,8 @@ const Main = () => {
           <p>Repair</p>
         </button>
         <div className={styles.durability}>
-          <p>80 %</p>
+          <div style={{width: `${mainPageInfo.derrickWear}%`}} className={styles.fill}></div>
+          <p>{mainPageInfo.derrickWear} %</p>
         </div>
         <button>
           <img src={pumpIcon} alt={""}/>

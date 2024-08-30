@@ -5,6 +5,16 @@ import coinIcon from "../../img/coin.png";
 import {Link} from "react-router-dom";
 
 const PlayerList = ({list = [], isNumbered = false}) => {
+  /*
+    list: [
+      {
+        index,
+        name,
+        balance
+      }
+    ]
+   */
+
   const avatarBaseUrl = `${import.meta.env.VITE_API_URL}/avatars/`;
   return (
     <div className={styles.leaderboard}>
