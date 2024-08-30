@@ -1,9 +1,9 @@
 const { Router } = require("express");
-const ApiError = require("../../../../exceptions/api-error");
-const authMiddleware = require("../../../../middlewares/authMiddleware");
+const ApiError = require("../../../exceptions/api-error");
+const authMiddleware = require("../../../middlewares/authMiddleware");
 
 // get current derrick level
-module.exports = Router({ mergeParams: true }).get("/transferMarket/getCurrency", authMiddleware, async (req, res, next) => {
+module.exports = Router({ mergeParams: true }).get("/transferMarket", authMiddleware, async (req, res, next) => {
 	try {
 		const { db } = req;
 		const tgId = req.user.id;
@@ -22,8 +22,10 @@ module.exports = Router({ mergeParams: true }).get("/transferMarket/getCurrency"
 		}
 
 		let currency = settings.oilToUSDCurrency;
+		let availableOil = user.oilAmount;
+		let availableUSD = user.balance;
 
-		res.json({ currency });
+		res.json({ currency, availableOil, availableUSD });
 	} catch (error) {
 		console.error("Error while buying a derrick:", error);
 		next(error);
