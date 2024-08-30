@@ -14,7 +14,15 @@
   color: #fff;
   padding: 13px;
   justify-content: space-between;
+  gap: 10px;
   align-items: center;
+
+  @media (max-width: 360px) {
+    button {
+      font-size: 12px;
+      width: 80px!important;
+    }
+  }
 
   & > div {
     display: flex;

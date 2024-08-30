@@ -14,8 +14,8 @@ module.exports = Router({ mergeParams: true }).get("/user", authMiddleware, asyn
 
 		let boughtLocations = await db.Locations.countDocuments({ ownerTgId: tgId });
 		let refferalsCount = await db.User.countDocuments({ EnterReferralCode: user.referralCode });
-		let workersCount = await db.Workers.countDocuments({ ownerTgId: tgId });
-		let generalWorkerCount = await db.WorkersList.countDocuments({});
+		let workersCount = user.repairWorkerLevel + user.traderWorkerLevel + user.consultantWorkerLevel;
+		let generalWorkerCount = 15;
 		let totalResouces = user.totalOilEarned;
 		let tasksCompleted = 0;
 		let totalOilProduction = user.totalBalanceEarned;

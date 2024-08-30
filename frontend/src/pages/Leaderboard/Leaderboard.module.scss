@@ -6,6 +6,15 @@
   padding: 12px;
   gap: 12px;
 
+  @media (max-width: 380px) {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  @media (max-width: 340px) {
+    padding: 0;
+  }
+
   .topBlock {
     position: relative;
     flex: 1 1 auto;

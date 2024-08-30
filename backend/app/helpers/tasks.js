@@ -34,7 +34,7 @@ const getUserTasksInfo = async (db, tgId) => {
 	tasksWithCompletionStatus.sort((a, b) => b.order - a.order);
 
 	// filter hidden
-	tasksWithCompletionStatus = tasksWithCompletionStatus.filter(task => !task.hidden);
+	tasksWithCompletionStatus = tasksWithCompletionStatus.filter((task) => !task.hidden);
 
 	return { tasks: tasksWithCompletionStatus, availableReward, completedTasksAmount };
 };
