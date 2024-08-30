@@ -89,8 +89,7 @@
       height: calc(100% - 2px);
     }
 
-    &::after {
-      content: "";
+    .fill {
       position: absolute;
       clip-path: polygon(5.00% 0.00%,100.00% 0.00%,100% 100%,0% 100%);
       left: 2.5px;
