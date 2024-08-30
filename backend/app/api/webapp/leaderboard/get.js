@@ -11,6 +11,7 @@ module.exports = Router({ mergeParams: true }).get("/leaderboard", async (req, r
 			position: index + 1,
 			tgId: user.tgId,
 			nickName: user.nickName,
+			username: user.tgUsername,
 			balance: user.balance,
 			avatarUrl: user.avatarUrl,
 		}));
@@ -21,6 +22,7 @@ module.exports = Router({ mergeParams: true }).get("/leaderboard", async (req, r
 			position: index + 1,
 			tgId: user.tgId,
 			nickName: user.nickName,
+			username: user.tgUsername,
 			balance: user.weekBalanceEarned,
 			avatarUrl: user.avatarUrl,
 		}));
