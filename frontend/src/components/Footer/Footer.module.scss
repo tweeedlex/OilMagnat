@@ -34,13 +34,21 @@
   height: 88px;
   position: relative;
   background: url("/src/img/footer/footer-bg.png") no-repeat center center;
-  background-size: cover;
+  background-size: contain;
   z-index: 2!important;
 
   .pageLinks {
     justify-content: space-between;
-    gap: 20px;
-    padding: 0 10px;
+
+    padding: 0 15px;
+
+    @media (max-width: 380px) {
+      padding: 0 10px;
+    }
+
+    @media (max-width: 340px) {
+      padding: 0 5px;
+    }
 
     &, div {
       display: flex;
@@ -49,6 +57,14 @@
     div {
       display: flex;
       gap: 10px;
+
+      @media (max-width: 380px) {
+        gap: 2px;
+      }
+
+      @media (max-width: 340px) {
+        gap: 0;
+      }
 
       a {
         display: flex;
@@ -59,9 +75,30 @@
         font-size: 12px;
         width: 60px;
 
+        @media (max-width: 380px) {
+          gap: 3px;
+          font-size: 11px;
+          margin-top: 15px;
+        }
+
+        @media (max-width: 340px) {
+          margin-top: 18px;
+          font-size: 10px;
+        }
+
         img {
           width: 44px;
           height: 44px;
+
+          @media (max-width: 380px) {
+            width: 36px;
+            height: 36px;
+          }
+
+          @media (max-width: 340px) {
+            width: 32px;
+            height: 32px;
+          }
         }
       }
     }
@@ -79,4 +116,11 @@
   top: -34px;
   border-radius: 50%;
   background-color: #fff;
+
+  @media (max-width: 360px) {
+    width: 60px;
+    height: 60px;
+    left: calc(50% - 30px);
+    top: -23px;
+  }
 }

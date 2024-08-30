@@ -1,25 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import Button from "../../ui/Button/Button";
 import styles from "./SellOil.module.scss";
-import {changeOil, getCurrency} from "../../http/market";
+import {changeOil, getMarketInfo} from "../../http/market";
 import {useDispatch} from "react-redux";
 import {setUser} from "../../store/slice";
+
+const toFloat = (value) => parseFloat(value.toFixed(2));
 
 const SellOil = () => {
   const [currency, setCurrency] = useState(0);
   const [oilAmount, setOilAmount] = useState(0);
   const [usdAmount, setUsdAmount] = useState(0);
+  const [availableOil, setAvailableOil] = useState(0);
+  const [availableUsd, setAvailableUsd] = useState(0);
+  const [tradeOilTax, setTradeOilTax] = useState(0);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCurrency().then(data => {
+    getMarketInfo().then(data => {
       setCurrency(parseFloat((1 / data.currency).toFixed(4)));
+      setAvailableOil(toFloat(data.availableOil));
+      setAvailableUsd(toFloat(data.availableUSD));
+      setTradeOilTax(toFloat(data.tradeOilTax));
     });
   }, []);
 
   useEffect(() => {
-    setUsdAmount(parseFloat((oilAmount * currency).toFixed(2)));
+    setUsdAmount(parseFloat(((oilAmount * currency) - (oilAmount * currency * tradeOilTax / 100)).toFixed(2)));
   }, [oilAmount, currency]);
 
   const handleSell = async () => {
@@ -30,7 +38,8 @@ const SellOil = () => {
     }
 
     setOilAmount(0);
-    dispatch(setUser(response.data.user));
+    console.log(response)
+    dispatch(setUser(response.user));
     alert("Oil sold successfully");
   }
 
@@ -40,12 +49,12 @@ const SellOil = () => {
         <div className={styles.left}>
           <p className={styles.currency}>BBL</p>
           <input className={styles.priceInput} value={oilAmount} onChange={(e) => setOilAmount(e.target.value)} type={"number"}/>
-          <p className={styles.available}><span>Available:</span> 10000 BBL</p>
+          <p className={styles.available}><span>Available:</span> {availableOil} BBL</p>
         </div>
         <div className={styles.right}>
           <p className={styles.currency}>USD</p>
           <p className={styles.price}>{usdAmount}</p>
-          <p className={styles.available}><span>Available:</span> 10000 USD</p>
+          <p className={styles.available}><span>Available:</span> {availableUsd} USD</p>
         </div>
       </div>
       <hr/>

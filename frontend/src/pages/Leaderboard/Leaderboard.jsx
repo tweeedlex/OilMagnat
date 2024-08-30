@@ -8,6 +8,7 @@ import PlayerList from "../../components/PlayerList/PlayerList";
 import Switch from "../../ui/Switch/Switch";
 import { getLeaderboard } from "../../http/leaderboard";
 import Preloader from "../../ui/Preloader/Preloader";
+import formNumber from "../../helpers/formNumber";
 
 const Leaderboard = () => {
 	const [leaderboard, setLeaderboard] = useState(null);
@@ -22,19 +23,6 @@ const Leaderboard = () => {
 			);
 		});
 	}, [type]);
-
-	const formNumber = (number) => {
-		if (number < 1000) {
-			return number;
-		}
-		if (number < 1000000) {
-			return (number / 1000).toFixed(1) + "K";
-		}
-		if (number < 1000000000) {
-			return (number / 1000000).toFixed(1) + "M";
-		}
-		return (number / 1000000000).toFixed(1) + "B";
-	};
 
 	return (
 		<>
