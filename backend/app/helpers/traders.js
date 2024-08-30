@@ -1,4 +1,4 @@
-const getTraderWorkerBonus = (workerLevel) => {
+const getTraderWorkerBonus = (workerLevel, settings) => {
 	let workerBonus = 0;
 
 	switch (workerLevel) {
@@ -15,7 +15,30 @@ const getTraderWorkerBonus = (workerLevel) => {
 			workerBonus = 16;
 			break;
 		case 5:
-			workerBonus = 100;
+			workerBonus = settings?.defaultTradeOilTax || 20; // 100%
+			break;
+	}
+	return workerBonus;
+};
+
+const getConsultantWorkerBonus = (workerLevel, settings = {}) => {
+	let workerBonus = 0;
+
+	switch (workerLevel) {
+		case 1:
+			workerBonus = 2;
+			break;
+		case 2:
+			workerBonus = 4;
+			break;
+		case 3:
+			workerBonus = 8;
+			break;
+		case 4:
+			workerBonus = 16;
+			break;
+		case 5:
+			workerBonus = settings?.defaultWeeklyTax || 18; // 100%
 			break;
 	}
 	return workerBonus;
@@ -43,4 +66,4 @@ const getWorkersPrice = (workerLevel) => {
 	return workerPrice;
 };
 
-module.exports = { getTraderWorkerBonus, getWorkersPrice };
+module.exports = { getTraderWorkerBonus, getWorkersPrice, getConsultantWorkerBonus };
