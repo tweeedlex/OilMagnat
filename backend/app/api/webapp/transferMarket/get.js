@@ -23,7 +23,7 @@ module.exports = Router({ mergeParams: true }).get("/transferMarket", authMiddle
 		}
 
 		let defaultTradeOilTax = settings.defaultTradeOilTax;
-		let tradeOilTaxPercent = defaultTradeOilTax - getTraderWorkerBonus(user.traderWorkerLevel);
+		let tradeOilTaxPercent = defaultTradeOilTax - getTraderWorkerBonus(user.traderWorkerLevel, settings);
 
 		let currency = settings.oilToUSDCurrency;
 		let availableOil = user.oilAmount;

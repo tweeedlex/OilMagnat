@@ -28,7 +28,7 @@ module.exports = Router({ mergeParams: true }).post("/transferMarket/changeOil",
 		}
 
 		let defaultTradeOilTax = settings.defaultTradeOilTax;
-		let tradeOilTaxPercent = (defaultTradeOilTax - getTraderWorkerBonus(user.traderWorkerLevel)) / 100;
+		let tradeOilTaxPercent = (defaultTradeOilTax - getTraderWorkerBonus(user.traderWorkerLevel, settings)) / 100;
 
 		let currency = settings.oilToUSDCurrency;
 
