@@ -49,8 +49,8 @@ const Main = () => {
 					<p>Repair</p>
 				</button>
 				<div className={styles.durability}>
-					<div style={{ width: `${mainPageInfo.derrickWear}%` }} className={styles.fill}></div>
-					<p>{mainPageInfo.derrickWear} %</p>
+					<div style={{ width: `calc(${mainPageInfo.derrickDurability}%)` }} className={styles.fill}></div>
+					<p>${mainPageInfo.derrickDurability != 0 ? mainPageInfo.derrickDurability?.toFixed(2) : 0} %</p>
 				</div>
 				<button>
 					<img src={pumpIcon} alt={""} />

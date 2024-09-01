@@ -18,12 +18,12 @@ const Header = ({ isVisible = true }) => {
 			<div className={styles.infoSide}>
 				<img src={bblIcon} width={32} alt={""} />
 				<p>
-					{user.oilAmount} <span>BBL</span>
+					{user.oilAmount?.toFixed(2)} <span>BBL</span>
 				</p>
 			</div>
 			<div className={styles.oilStorage}>
 				<div className={styles.fill} style={{ height: `${(user.notClaimedOil / user.maxOilAmount) * 100}%` }}></div>
-				<p className={styles.oilAmount}>{user.notClaimedOil}</p>
+				<p className={styles.oilAmount}>{user.notClaimedOil != 0 ? user.notClaimedOil?.toFixed(2) : 0}</p>
 			</div>
 			<div
 				className={[styles.infoSide, styles.right].join(" ")}

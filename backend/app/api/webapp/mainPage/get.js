@@ -8,9 +8,12 @@ module.exports = Router({ mergeParams: true }).get("/mainPage", authMiddleware, 
 
 		const user = await db.User.findOne({ tgId });
 
-		const notClaimedOil = Math.floor(Math.random() * 10000) + 1;
-		const derrickWear = Math.floor(Math.random() * 100) + 1;
-		res.json({ user, notClaimedOil, derrickWear });
+		let derrickDurability = 0;
+		const derrick = await db.Locations.findOne({ ownerTgId: tgId, locationNumber: 1 });
+		if (derrick) {
+			derrickDurability = derrick.derrickDurability;
+		}
+		res.json({ user, derrickDurability });
 	} catch (error) {
 		console.error("Error:", error.message);
 		next(error);
