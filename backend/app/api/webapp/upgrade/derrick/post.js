@@ -43,6 +43,7 @@ module.exports = Router({ mergeParams: true }).post("/upgrade/derrick", authMidd
 		user.balance -= upgradeCost;
 		userLocation.derrickLevel += 1;
 		userLocation.derrickMiningRate = (userLocation.derrickMiningRate + 0.2).toFixed(2);
+		userLocation.derrickDurabilityRate = getDerrickDurabilityRate(userLocation.derrickLevel);
 
 		await user.save();
 		await userLocation.save();
@@ -72,4 +73,33 @@ function calculateUpgradeCost(upgradeLevel) {
 	}
 
 	return parseFloat(upgradeCost.toFixed(0));
+}
+
+// У нефтекачек есть износ в зависимости от уровня,
+// 1ур- 1,4% в час
+// 2ур- 1,1% в час
+// 3 ур- 0.9% в час
+// 4ур- 0.6% в час
+// 5 ур- 0.4% в час
+
+function getDerrickDurabilityRate(derrickLevel) {
+	let durabilityPercent = 1.4;
+	switch (derrickLevel) {
+		case 1:
+			durabilityPercent = 1.4;
+			break;
+		case 2:
+			durabilityPercent = 1.1;
+			break;
+		case 3:
+			durabilityPercent = 1.9;
+			break;
+		case 4:
+			durabilityPercent = 0.6;
+			break;
+		case 5:
+			durabilityPercent = 0.4;
+			break;
+	}
+	return durabilityPercent;
 }

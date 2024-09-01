@@ -42,6 +42,7 @@ module.exports = Router({ mergeParams: true }).post("/map/buyLocation", authMidd
 			locationId: location._id,
 			locationNumber: location.locationNumber,
 			locationName: location.locationName,
+			locationBonus: location.locationBonus,
 		});
 
 		res.json({ userLocation });
