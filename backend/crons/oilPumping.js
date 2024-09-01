@@ -57,7 +57,7 @@ async function oilPumping(db) {
 			for (const derrick of userDerricks) {
 				if (derrick.derrickDurability == 0 || !derrick) continue;
 				totalDerrickMined += derrick.derrickMiningRate / 360;
-				let newDerrickDurability = parseFloat((derrick.derrickDurability - derrick.derrickDurabilityRate / 360).toFixed(2));
+				let newDerrickDurability = derrick.derrickDurability - derrick.derrickDurabilityRate / 360;
 				if (newDerrickDurability > 0) {
 					derricksBulkOps.push({
 						updateOne: {
