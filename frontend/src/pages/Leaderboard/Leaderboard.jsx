@@ -83,7 +83,7 @@ const Leaderboard = () => {
 					<PlayerList
 						list={leaderboard.slice(3).map((item, index) => ({
 							avatar: item.avatarUrl,
-							name: item.username || user.nickName,
+							name: item.username || item.nickName,
 							index: item.position - 1,
 							balance: item.balance,
 						}))}
