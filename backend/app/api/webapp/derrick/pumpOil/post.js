@@ -16,11 +16,15 @@ module.exports = Router({ mergeParams: true }).post("/derrick/pumpOil", authMidd
 			return next(new ApiError(404, "User not found"));
 		}
 
+		if (user.isOilPumping == true) {
+			return next(new ApiError(404, "Oil pumping is already started"));
+		}
+
 		if (user.isOilClaimed == false) {
 			return next(new ApiError(404, "First make the storage empty"));
 		}
 
-		if (user.notClaimedOil == user.maxOilAmount) {
+		if (user.notClaimedOil >= user.maxOilAmount) {
 			return next(new ApiError(404, "Cannot start oil pumping, first make the storage empty"));
 		}
 
