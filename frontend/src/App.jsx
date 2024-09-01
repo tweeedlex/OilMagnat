@@ -10,6 +10,7 @@ import {useEffect} from "react";
 import Upgrades from "./pages/Upgrades/Upgrades";
 import {useDispatch} from "react-redux";
 import Market from "./pages/Market/Market";
+import Workers from "./pages/Workers/Workers";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
           <Route path={routes.TASKS} element={<Tasks />} />
           <Route path={routes.UPGRADES} element={<Upgrades />} />
           <Route path={routes.MARKET} element={<Market />} />
+          <Route path={routes.WORKERS} element={<Workers />} />
         </Routes>
       </main>
       <Footer />

@@ -5,4 +5,5 @@ export default {
   TASKS: "/tasks",
   LEADERBOARD: "/leaderboard",
   PROFILE: "/profile",
+  WORKERS: "/workers"
 }

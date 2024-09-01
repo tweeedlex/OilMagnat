@@ -1,0 +1,143 @@
+{
+  "workers": [
+    {
+      "level": 1,
+      "name": "Repair worker (Experienced)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 3,
+      "costDollars": 3000,
+      "costOil": 10000,
+      "img": "workerImage"
+    },
+    {
+      "level": 2,
+      "name": "Repair worker (Junior)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 5,
+      "costDollars": 7000,
+      "costOil": 20000,
+      "img": "workerImage"
+    },
+    {
+      "level": 3,
+      "name": "Repair worker (Skilled)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 7,
+      "costDollars": 10000,
+      "costOil": 30000,
+      "img": "workerImage"
+    },
+    {
+      "level": 4,
+      "name": "Repair worker (Master)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 9,
+      "costDollars": 15000,
+      "costOil": 40000,
+      "img": "workerImage"
+    },
+    {
+      "level": 5,
+      "name": "Repair worker (Expert)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 11,
+      "costDollars": 20000,
+      "costOil": 600000,
+      "img": "workerImage"
+    }
+  ],
+  "traders": [
+    {
+      "level": 1,
+      "name": "Trader (Experienced)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 3,
+      "costDollars": 3000,
+      "costOil": 10000,
+      "img": "traderImage"
+    },
+    {
+      "level": 2,
+      "name": "Trader (Junior)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 5,
+      "costDollars": 7000,
+      "costOil": 20000,
+      "img": "traderImage"
+    },
+    {
+      "level": 3,
+      "name": "Trader (Skilled)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 7,
+      "costDollars": 10000,
+      "costOil": 30000,
+      "img": "traderImage"
+    },
+    {
+      "level": 4,
+      "name": "Trader (Master)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 9,
+      "costDollars": 15000,
+      "costOil": 40000,
+      "img": "traderImage"
+    },
+    {
+      "level": 5,
+      "name": "Trader (Expert)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 11,
+      "costDollars": 20000,
+      "costOil": 600000,
+      "img": "traderImage"
+    }
+  ],
+  "consultants": [
+    {
+      "level": 1,
+      "name": "Consultant (Experienced)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 3,
+      "costDollars": 3000,
+      "costOil": 10000,
+      "img": "consultantImage"
+    },
+    {
+      "level": 2,
+      "name": "Consultant (Junior)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 5,
+      "costDollars": 7000,
+      "costOil": 20000,
+      "img": "consultantImage"
+    },
+    {
+      "level": 3,
+      "name": "Consultant (Skilled)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 7,
+      "costDollars": 10000,
+      "costOil": 30000,
+      "img": "consultantImage"
+    },
+    {
+      "level": 4,
+      "name": "Consultant (Master)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 9,
+      "costDollars": 15000,
+      "costOil": 40000,
+      "img": "consultantImage"
+    },
+    {
+      "level": 5,
+      "name": "Consultant (Expert)",
+      "description": "Just starting out, can handle simple tasks like fixing hand tools or minor breakdowns.",
+      "repairSpeed": 11,
+      "costDollars": 20000,
+      "costOil": 600000,
+      "img": "consultantImage"
+    }
+  ]
+}
