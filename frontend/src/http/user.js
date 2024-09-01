@@ -3,7 +3,7 @@ import {setUser} from "../store/slice";
 
 export const auth = async (dispatch) => {
 	let initData = window.Telegram.WebApp.initData
-	if (import.meta.env.VITE_DEBUG_AUTH) {
+	if (import.meta.env.VITE_DEBUG_AUTH === "true") {
 		initData = import.meta.env.VITE_INIT_DATA
 	}
 	console.log(initData)

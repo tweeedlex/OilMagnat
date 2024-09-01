@@ -15,6 +15,7 @@ const userSchema = mongoose.Schema({
 	oilAmount: { type: Number, default: 0, required: true },
 	notClaimedOil: { type: Number, default: 0, required: true },
 	isOilPumping: { type: Boolean, default: false },
+	isOilClaimed: { type: Boolean, default: true },
 	// upgrades (oil)
 	oilStorageLevel: { type: Number, default: 1 },
 	maxOilAmount: { type: Number, default: 6.4 },
