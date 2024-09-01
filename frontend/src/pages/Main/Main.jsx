@@ -29,7 +29,7 @@ const Main = () => {
             <img src={mapIcon} width={24} height={24} alt={""}/>
             <p>Map</p>
           </Link>
-          <Link to={""}>
+          <Link to={"/workers"}>
             <img src={personalIcon} width={24} height={24} alt={""}/>
             <p>Personal</p>
           </Link>
