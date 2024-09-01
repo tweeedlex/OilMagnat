@@ -51,7 +51,6 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1 1 auto;
-	background: urL("/src/img/main/left.png") no-repeat 0 0 / contain;
 	padding: 10px;
 	color: #fff;
 	gap: 5px;
@@ -75,6 +74,5 @@
 
 	&.right {
 		align-items: end;
-		background: urL("/src/img/main/right.png") no-repeat 100% 0 / contain;
 	}
 }
